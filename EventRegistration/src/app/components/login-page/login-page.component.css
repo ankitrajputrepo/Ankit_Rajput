@@ -1,0 +1,19 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css);
+
+.login {
+    display: flex;
+    flex-direction: column;
+    min-height: 90%;
+}
+main{
+    flex: 1;
+    overflow-y: auto;
+    padding: 9px; /* Adjust padding as needed */
+
+}
+.footer {
+    text-align: center;
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #343a40; /* Example footer background color */
+    color: #fff; /* Example footer text color */
+}
