@@ -1,0 +1,82 @@
+/* Make the card background transparent and add a subtle shadow */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+    backdrop-filter: blur(10px); /* Optional: Add blur effect to the background */
+  }
+  
+  /* Style for input fields */
+  .form-control {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white background */
+    border: 1px solid #ced4da; /* Border color */
+  }
+  
+  /* Style for form labels */
+  .form-label {
+    font-weight: bold;
+    color: #495057; /* Darker text color for better readability */
+  }
+  
+  /* Custom button styles */
+  .btn-custom {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-custom:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Specific button styles */
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  /* Layout adjustments */
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-between {
+    justify-content: space-between;
+  }
+  
+  .ms-2 {
+    margin-left: 0.5rem;
+  }
+  
