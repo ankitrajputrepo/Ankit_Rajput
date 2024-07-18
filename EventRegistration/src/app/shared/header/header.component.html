@@ -1,7 +1,10 @@
 <header class="header sticky-top bg-dark">
     <h1>Live<span>Tunes</span></h1>
     <div class="btn-group">
-        <button id="adminButton" class="btn btn-primary" routerLink="/admin">Admin</button>
-        <button id="registrationButton" class="btn btn-secondary" routerLink="/eventdetails">Registration</button>
+      <!-- Use AuthService to check if admin is logged in -->
+      <button  id="adminButton" *ngIf="!authService.isAdminUserLoggedIn()" class="btn btn-primary" routerLink="/admin">Admin</button>
+      <button id="registrationButton"  class="btn btn-secondary" *ngIf="!authService.isAdminUserLoggedIn()" routerLink="/eventdetails">Registration</button>
+      <button id="registrationButton"  class="btn btn-secondary" *ngIf="authService.isAdminUserLoggedIn()" routerLink="/admin" (click)="logout()">LogOut</button>
     </div>
-</header>
+  </header>
+  

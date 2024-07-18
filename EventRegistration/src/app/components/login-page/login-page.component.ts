@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../auth-service.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +14,11 @@ import { Router } from '@angular/router';
 export class LoginPageComponent {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthServiceService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -23,8 +28,8 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      // Check if email and password match hardcoded values
-      if (email === 'admin@123' && password === 'admin') {
+      // Use AuthService to perform login
+      if (this.authService.login(email, password)) {
         // Redirect to admin page upon successful login
         this.router.navigate(['/adminpage']);
       } else {
