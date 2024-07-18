@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+   
+}
+.header h1 {
+    margin: 0;
+    color: blueviolet;
+}
+.header h1 span {
+    color:green;
+}
+.header .btn-group {
+    margin-left: auto;
+}
