@@ -1,1 +1,42 @@
-<p>successful-page works!</p>
+<div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <img src="../../../assets/5839078.png" class="card-img-top" alt="Success Image" style="width: 40px; height: 40px;">
+          <div class="card-body">
+            <h3 class="text-center mb-4">Registration Successful!</h3>
+            <div class="text-center">
+              <div class="mb-3">
+                <h5 class="text-muted">Name:</h5>
+                <p>{{ registrationData.name }}</p>
+              </div>
+              <div class="mb-3">
+                <h5 class="text-muted">Phone No:</h5>
+                <p>{{ registrationData.phone }}</p>
+              </div>
+              <div class="mb-3">
+                <h5 class="text-muted">Event Time:</h5>
+                <p>{{ registrationData.eventTime }}</p>
+              </div>
+              <div class="mb-3">
+                <h5 class="text-muted">Event Name:</h5>
+                <p>{{ registrationData.eventName }}</p>
+              </div>
+              <div class="mb-3">
+                <h5 class="text-muted">Number of Tickets:</h5>
+                <p>{{ registrationData.tickets }}</p>
+              </div>
+              <div class="mb-3">
+                <h5 class="text-muted">Generated ID:</h5>
+                <p>{{ registrationData.id }}</p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <a href="/registrationPage" class="btn btn-primary me-2">Back to Registration</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

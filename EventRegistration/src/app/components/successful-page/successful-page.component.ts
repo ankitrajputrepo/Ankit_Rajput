@@ -8,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrl: './successful-page.component.css'
 })
 export class SuccessfulPageComponent {
+  registrationData: any;
 
+  constructor() {}
+
+  ngOnInit(): void {
+    const storedData = localStorage.getItem('registrationData');
+    if (storedData) {
+      this.registrationData = JSON.parse(storedData);
+    }
+  }
 }
