@@ -1,1 +1,144 @@
-<p>registration-page works!</p>
+<div class="container mt-5">
+    <div class="row">
+      <!-- Registration Form -->
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <!-- Step 1 -->
+            <div *ngIf="currentStep === 1" class="wizard" id="step1">
+              <h3 class="text-center mb-4">Step 1: Personal Information</h3>
+              <form [formGroup]="personalInfoForm">
+                <div class="mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                  <div *ngIf="personalInfoForm.get('firstName')?.invalid && personalInfoForm.get('firstName')?.touched" class="text-danger">
+                    <div *ngIf="personalInfoForm.get('firstName')?.errors?.['required']">First Name is required.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                  <div *ngIf="personalInfoForm.get('lastName')?.invalid && personalInfoForm.get('lastName')?.touched" class="text-danger">
+                    <div *ngIf="personalInfoForm.get('lastName')?.errors?.['required']">Last Name is required.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="mobileNo" class="form-label">Mobile No.</label>
+                  <input type="tel" class="form-control" id="mobileNo" formControlName="mobileNo">
+                  <div *ngIf="personalInfoForm.get('mobileNo')?.invalid && personalInfoForm.get('mobileNo')?.touched" class="text-danger">
+                    <div *ngIf="personalInfoForm.get('mobileNo')?.errors?.['required']">Mobile Number is required.</div>
+                    <div *ngIf="personalInfoForm.get('mobileNo')?.errors?.['pattern']">Invalid Mobile Number.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" formControlName="email">
+                  <div *ngIf="personalInfoForm.get('email')?.invalid && personalInfoForm.get('email')?.touched" class="text-danger">
+                    <div *ngIf="personalInfoForm.get('email')?.errors?.['required']">Email is required.</div>
+                    <div *ngIf="personalInfoForm.get('email')?.errors?.['email']">Invalid email format.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="dob" class="form-label">Date of Birth</label>
+                  <input type="date" class="form-control" id="dob" formControlName="dob">
+                  <div *ngIf="personalInfoForm.get('dob')?.invalid && personalInfoForm.get('dob')?.touched" class="text-danger">
+                    <div *ngIf="personalInfoForm.get('dob')?.errors?.['required']">Date of Birth is required.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="gender" class="form-label">Gender</label>
+                  <select class="form-select" id="gender" formControlName="gender">
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <div *ngIf="personalInfoForm.get('gender')?.invalid && personalInfoForm.get('gender')?.touched" class="text-danger">
+                    <div *ngIf="personalInfoForm.get('gender')?.errors?.['required']">Gender is required.</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                </div>
+              </form>
+            </div>
+  
+            <!-- Step 2 -->
+            <div *ngIf="currentStep === 2" class="wizard" id="step2">
+              <h3 class="text-center mb-4">Step 2: Event Details</h3>
+              <form [formGroup]="eventInfoForm">
+                <div class="mb-3">
+                  <label for="eventName" class="form-label">Event Name</label>
+                  <input type="text" class="form-control" id="eventName" formControlName="eventName" readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="eventTime" class="form-label">Event Time</label>
+                  <input type="text" class="form-control" id="eventTime" formControlName="eventTime" readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="tickets" class="form-label">Number of Tickets</label>
+                  <input type="number" class="form-control" id="tickets" formControlName="tickets" (change)="calculatePrice()">
+                  <div *ngIf="eventInfoForm.get('tickets')?.invalid && eventInfoForm.get('tickets')?.touched" class="text-danger">
+                    <div *ngIf="eventInfoForm.get('tickets')?.errors?.['required']">Number of Tickets is required.</div>
+                    <div *ngIf="eventInfoForm.get('tickets')?.errors?.['min']">At least one ticket is required.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="price" class="form-label">Price per Ticket</label>
+                  <input type="number" class="form-control" id="price" [value]="pricePerTicket" readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="totalPrice" class="form-label">Total Price</label>
+                  <input type="number" class="form-control" id="totalPrice" [value]="totalPrice" readonly>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="btn btn-secondary" (click)="prevStep()">Back</button>
+                  <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                </div>
+              </form>
+            </div>
+  
+            <!-- Step 3 -->
+            <div *ngIf="currentStep === 3" class="wizard" id="step3">
+              <h3 class="text-center mb-4">Step 3: Payment</h3>
+              <form [formGroup]="paymentForm">
+                <div class="mb-3">
+                  <label for="paymentMethod" class="form-label">Payment Method</label>
+                  <select class="form-select" id="paymentMethod" formControlName="paymentMethod">
+                    <option value="">Select</option>
+                    <option value="creditCard">Credit Card</option>
+                    <option value="debitCard">Debit Card</option>
+                    <option value="paypal">PayPal</option>
+                  </select>
+                  <div *ngIf="paymentForm.get('paymentMethod')?.invalid && paymentForm.get('paymentMethod')?.touched" class="text-danger">
+                    <div *ngIf="paymentForm.get('paymentMethod')?.errors?.['required']">Payment Method is required.</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button type="button" class="btn btn-secondary" (click)="prevStep()">Back</button>
+                  <div>
+                    <button type="button" class="btn btn-success" (click)="submit()">Submit</button>
+                    <button type="button" class="btn btn-danger ms-2" (click)="cancel()">Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Event Organizer Details -->
+      <div class="col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h3 class="text-center mb-4">Event Organizer Details</h3>
+            <p class="text-center">Organizer Name: {{ event.organizer.name || 'Loading...' }}</p>
+            <p class="text-center">Contact: {{ event.organizer.contact || 'Loading...' }}</p>
+            <p class="text-center">Email: {{ event.organizer.email || 'Loading...' }}</p>
+            <p class="text-center">Organization: {{ event.organizer.organization || 'Loading...' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
