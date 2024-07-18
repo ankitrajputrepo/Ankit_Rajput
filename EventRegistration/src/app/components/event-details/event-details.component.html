@@ -1,1 +1,16 @@
-<p>event-details works!</p>
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let event of events">
+        <div class="card mb-4" (click)="onCardClick(event)">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ event.time | date: 'fullDate' }} at {{ event.time | date: 'shortTime' }}</h6>
+            <p class="card-text"><strong>Organizer:</strong> {{ event.organizer }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ event.price }}</p>
+            <p class="card-text">{{ event.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
