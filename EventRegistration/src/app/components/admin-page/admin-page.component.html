@@ -1,1 +1,30 @@
-<p>admin-page works!</p>
+<div class="container mt-3">
+    <h2 class="text-white">Registered Users</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Event Time</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Tickets</th>
+            <th scope="col">Generated ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userList; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.eventTime | date:'medium' }}</td>
+            <td>{{ user.eventName }}</td>
+            <td>{{ user.tickets }}</td>
+            <td>{{ user.id }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
